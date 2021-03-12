@@ -109,6 +109,11 @@ function! DWM_AutoEnter()
   if &l:buftype == 'quickfix'
     return
   endif
+  
+  " Skip buffers created by Fugitive
+  if (expand('%') =~# 'fugitive:\/\/')
+    return
+  endif
 
   " Move new window to stack top
   wincmd K
